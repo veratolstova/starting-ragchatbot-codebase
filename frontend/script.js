@@ -125,7 +125,7 @@ function addMessage(content, type, sources = null, isWelcome = false) {
         html += `
             <details class="sources-collapsible">
                 <summary class="sources-header">Sources</summary>
-                <div class="sources-content">${sources.join(', ')}</div>
+                <div class="sources-content">${renderSources(sources)}</div>
             </details>
         `;
     }
@@ -142,6 +142,15 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+function renderSources(sources) {
+    return sources.map(source => {
+        if (source.url) {
+            return `<a href="${source.url}" target="_blank" rel="noopener noreferrer" class="source-link">${escapeHtml(source.label)}</a>`;
+        }
+        return escapeHtml(source.label);
+    }).join(', ');
 }
 
 // Removed removeMessage function - no longer needed since we handle loading differently
