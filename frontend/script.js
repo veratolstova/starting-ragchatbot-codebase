@@ -147,10 +147,10 @@ function escapeHtml(text) {
 function renderSources(sources) {
     return sources.map(source => {
         if (source.url) {
-            return `<a href="${source.url}" target="_blank" rel="noopener noreferrer" class="source-link">${escapeHtml(source.label)}</a>`;
+            return `<div class="source-item"><a href="${source.url}" target="_blank" rel="noopener noreferrer" class="source-link">${escapeHtml(source.label)}</a></div>`;
         }
-        return escapeHtml(source.label);
-    }).join(', ');
+        return `<div class="source-item">${escapeHtml(source.label)}</div>`;
+    }).join('');
 }
 
 // Removed removeMessage function - no longer needed since we handle loading differently

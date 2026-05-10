@@ -245,6 +245,10 @@ header h1 {
     color: var(--text-secondary);
 }
 
+.source-item {
+    margin-bottom: 0.25rem;
+}
+
 .source-link {
     color: var(--text-secondary);
     text-decoration: underline;
