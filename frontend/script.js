@@ -30,6 +30,9 @@ function setupEventListeners() {
     });
     
     
+    // New Chat button
+    document.getElementById('newChatButton').addEventListener('click', createNewSession);
+
     // Suggested questions
     document.querySelectorAll('.suggested-item').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -156,6 +159,10 @@ function renderSources(sources) {
 // Removed removeMessage function - no longer needed since we handle loading differently
 
 async function createNewSession() {
+    if (currentSessionId) {
+        fetch(`${API_URL}/session/${currentSessionId}`, { method: 'DELETE' })
+            .catch(() => {});
+    }
     currentSessionId = null;
     chatMessages.innerHTML = '';
     addMessage('Welcome to the Course Materials Assistant! I can help you with questions about courses, lessons and specific content. What would you like to know?', 'assistant', null, true);
